@@ -1,14 +1,14 @@
 {
   "name": "BackEnd-PI-Estacao-Hack-Grupo-5",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:NaraGuimma/BackEnd-PI-Estacao-Hack-Grupo-5.git",
   "author": "NaraGuimma <naraguimma@gmail.com>",
   "license": "MIT",
+  "main": "dist/src/server.js",
   "scripts": {
-    "knex:migrate:prod": "knex --knexfile dist/knexfile.js migrate:latest",
-    "prestart": "tsc --removecomments --types --outDir ./dist/ ",
-    "start": "npm run knex:migrate:prod && node ./dist/src/server.js",
+    "build": "tsc --removecomments --types --outDir ./dist/ ",
+    "postbuild": "knex --knexfile dist/knexfile.js migrate:latest",
+    "start": "node ./dist/src/server.js",
     "dev": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
     "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback"
