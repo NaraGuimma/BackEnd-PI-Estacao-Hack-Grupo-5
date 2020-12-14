@@ -25,6 +25,10 @@ export default class UsersController {
     const trx = await db.transaction();
 
     try {
+      const user = await trx('users').where({ email }).select().first();
+      if (user) {
+        throw 'Unexpected error while creating new user';
+      }
       await trx('users').insert({
         name,
         email,
