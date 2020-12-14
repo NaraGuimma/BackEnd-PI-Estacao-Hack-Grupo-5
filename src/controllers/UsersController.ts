@@ -41,4 +41,16 @@ export default class UsersController {
       });
     }
   }
+
+  async main(request: Request, response: Response) {
+    try {
+      const users = await db('users').select('users.*');
+
+      return response.json(users);
+    } catch (error) {
+      return response.status(400).send({
+        error: 'Unexpected error while creating new user',
+      });
+    }
+  }
 }
