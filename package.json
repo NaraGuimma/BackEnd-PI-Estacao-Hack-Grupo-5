@@ -6,7 +6,10 @@
   "author": "NaraGuimma <naraguimma@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "knex:migrate:prod": "knex --knexfile dist/knexfile.js migrate:latest",
+    "prestart": "tsc --removecomments --types --outDir ./dist/ ",
+    "start": "npm run knex:migrate:prod && node ./dist/src/server.js",
+    "dev": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
     "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback"
   },
