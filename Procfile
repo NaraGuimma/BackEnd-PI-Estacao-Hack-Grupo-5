@@ -1,0 +1,1 @@
+web: node ./dis/src/server.js
